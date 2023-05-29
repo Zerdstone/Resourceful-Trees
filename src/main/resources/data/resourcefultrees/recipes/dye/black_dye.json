@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"   ",
+		"EE ",
+		"  E"
+	],
+	"key": {
+		"E": {
+			"item": "resourcefultrees:rgb_sap"
+		}
+	},
+	"result": {
+		"item": "minecraft:black_dye",
+		"count": 6
+	}
+}

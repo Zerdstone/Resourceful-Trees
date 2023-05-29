@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Glow",
+		"resultIngredient": "minecraft:glowstone_dust"
+	},
+	"log": {
+		"displayName": "Glow",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Glow",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Glow",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

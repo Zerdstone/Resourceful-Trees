@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Ancient",
+		"resultIngredient": "minecraft:netherite_scrap"
+	},
+	"log": {
+		"displayName": "Ancient",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Ancient",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Ancient",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

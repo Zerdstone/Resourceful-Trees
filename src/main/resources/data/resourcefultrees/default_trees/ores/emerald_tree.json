@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Emerald",
+		"resultIngredient": "minecraft:emerald"
+	},
+	"log": {
+		"displayName": "Emerald",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Emerald",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Emerald",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

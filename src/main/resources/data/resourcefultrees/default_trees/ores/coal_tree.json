@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Coal",
+		"resultIngredient": "minecraft:coal"
+	},
+	"log": {
+		"displayName": "Coal",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Coal",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Coal",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Slimy",
+		"resultIngredient": "minecraft:slime_ball"
+	},
+	"log": {
+		"displayName": "Slimy",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Slimy",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Slimy",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

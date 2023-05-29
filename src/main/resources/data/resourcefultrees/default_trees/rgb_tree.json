@@ -1,0 +1,28 @@
+{
+	"worldGeneration": {
+		"generateInWorld": true,
+		"biomeList": [
+			"minecraft:plains"
+		]
+	},
+	"bark": {
+		"displayName": "RGB",
+		"resultIngredient": "minecraft:dirt"
+	},
+	"log": {
+		"displayName": "RGB",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "RGB",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "RGB",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

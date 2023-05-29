@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Lapis Lazuli",
+		"resultIngredient": "minecraft:lapis_lazuli"
+	},
+	"log": {
+		"displayName": "Lapis Lazuli",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Lapis Lazuli",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Lapis Lazuli",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

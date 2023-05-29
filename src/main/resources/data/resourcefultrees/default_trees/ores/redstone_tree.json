@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Redstone",
+		"resultIngredient": "minecraft:redstone"
+	},
+	"log": {
+		"displayName": "Redstone",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Redstone",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Redstone",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

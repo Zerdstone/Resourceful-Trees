@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Iron",
+		"resultIngredient": "minecraft:iron_ingot"
+	},
+	"log": {
+		"displayName": "Iron",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Iron",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Iron",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

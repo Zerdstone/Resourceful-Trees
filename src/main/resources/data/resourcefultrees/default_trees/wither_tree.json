@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Wither",
+		"resultIngredient": "minecraft:nether_star"
+	},
+	"log": {
+		"displayName": "Wither",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Wither",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Wither",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

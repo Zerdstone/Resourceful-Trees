@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Ender",
+		"resultIngredient": "minecraft:ender_pearl"
+	},
+	"log": {
+		"displayName": "Ender",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Ender",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:iron_block",
+	"leaves": {
+		"displayName": "Ender",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}

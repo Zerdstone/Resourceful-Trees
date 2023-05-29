@@ -1,0 +1,26 @@
+{
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"bark": {
+		"displayName": "Gold",
+		"resultIngredient": "minecraft:gold_ingot"
+	},
+	"log": {
+		"displayName": "Gold",
+		"useChiselInWorld": true,
+		"burnTime": 0
+	},
+	"sapling": {
+		"displayName": "Gold",
+		"burnTime": 0
+	},
+	"growOn": "minecraft:dirt",
+	"leaves": {
+		"displayName": "Gold",
+		"dropSapling": true,
+		"dropBark": true,
+		"dropStick": false
+	}
+}
