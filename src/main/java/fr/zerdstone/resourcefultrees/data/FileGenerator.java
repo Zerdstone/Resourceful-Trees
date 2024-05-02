@@ -230,46 +230,33 @@ public class FileGenerator {
 	public static Map<String, String> generateLeavesLootTable() {
 		Map<String, String> leavesLootTable = new HashMap<>();
 
-		RegistryHandler.LEAVES.forEach((name, leaf) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{\"type\": \"minecraft:block\",\"pools\": [");
+		Path leafLootTableModel = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/leafLootTable.json");
+		Path leafBarkData = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/leafBarkData.json");
 
-			builder.append(
-					"{\"rolls\": 1,\"bonus_rolls\": 0,\"entries\": [{\"type\": \"minecraft:alternatives\",\"children\": [");
-			// Leaves
-			builder.append("{\"type\": \"minecraft:item\",\"name\": \"resourcefultrees:" +
-					name.replace("_tree", "_leaves") +
-					"\",\"conditions\": [{\"condition\": \"minecraft:alternative\",\"terms\": [{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"items\": [\"minecraft:shears\"]}},{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"enchantments\": [{\"enchantment\": \"minecraft:silk_touch\",\"levels\": {\"min\": 1}}]}}]}]}");
+		RegistryHandler.LEAVES.forEach((name, leaf) -> {
+			String leafLootTablesFileName = name.replace("_tree", "_leaves");
 
 			TreeData treeData = TreeRegistry.getRegistry().getTrees().get(name);
 
-			if (treeData.leaves.dropSapling) {
-				// Sapling
-				builder.append(",{\"type\": \"minecraft:item\",\"name\": \"resourcefultrees:" +
-						name.replace("_tree", "_sapling") +
-						"\",\"conditions\": [{\"condition\": \"minecraft:survives_explosion\"},{\"condition\": \"minecraft:table_bonus\",\"enchantment\": \"minecraft:fortune\",\"chances\": [0.05,0.0625,0.083333336,0.1]}]}");
+			try {
+				String leafLootTable = Files.readString(leafLootTableModel);
+				leafLootTable = leafLootTable.replace("SAPLINGNAME", name.replace("_tree", "_sapling"));
+				leafLootTable = leafLootTable.replace("LEAFNAME", name.replace("_tree", "_leaves"));
+
+				if (treeData.leaves.dropBark) {
+					String barkData = Files.readString(leafBarkData);
+					barkData = barkData.replace("BARKNAME", name.replace("_tree", "_bark"));
+					leafLootTable = leafLootTable.replace("BARKDATA", "," + barkData);
+				} else {
+					leafLootTable = leafLootTable.replace("BARKDATA", "");
+				}
+
+				leavesLootTable.put(leafLootTablesFileName, leafLootTable);
+			} catch (IOException e) {
+				LOGGER.error(e);
 			}
-			builder.append("]}]}");
-
-			if (treeData.leaves.dropStick) {
-				// Stick
-				builder.append(
-						",{\"rolls\": 1,\"bonus_rolls\": 0,\"entries\": [{\"type\": \"minecraft:item\",\"name\": \"minecraft:stick\",\"functions\": [{\"function\": \"minecraft:set_count\",\"count\": {\"type\": \"minecraft:uniform\",\"min\": 1,\"max\": 2},\"add\": false},{\"function\": \"minecraft:explosion_decay\"}],\"conditions\": [{\"condition\": \"minecraft:table_bonus\",\"enchantment\": \"minecraft:fortune\",\"chances\": [0.02,0.022222223,0.025,0.033333335,0.1]}]}],\"conditions\": [{\"condition\": \"minecraft:inverted\",\"term\": {\"condition\": \"minecraft:alternative\",\"terms\": [{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"items\": [\"minecraft:shears\"]}},{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"enchantments\": [{\"enchantment\": \"minecraft:silk_touch\",\"levels\": {\"min\": 1}}]}}]}}]}");
-			}
-
-			if (treeData.leaves.dropBark) {
-				// Bark
-				builder.append(
-						",{\"rolls\": 1,\"bonus_rolls\": 0,\"entries\": [{\"type\": \"minecraft:item\",\"name\": \"resourcefultrees:"
-								+
-								name.replace("_tree", "_bark") +
-								"\",\"functions\": [{\"function\": \"minecraft:set_count\",\"count\": {\"type\": \"minecraft:uniform\",\"min\": 1,\"max\": 2},\"add\": false},{\"function\": \"minecraft:explosion_decay\"}],\"conditions\": [{\"condition\": \"minecraft:table_bonus\",\"enchantment\": \"minecraft:fortune\",\"chances\": [0.02,0.022222223,0.025,0.033333335,0.1]}]}],\"conditions\": [{\"condition\": \"minecraft:inverted\",\"term\": {\"condition\": \"minecraft:alternative\",\"terms\": [{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"items\": [\"minecraft:shears\"]}},{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"enchantments\": [{\"enchantment\": \"minecraft:silk_touch\",\"levels\": {\"min\": 1}}]}}]}}]}");
-			}
-
-			builder.append("]}");
-
-			String leafLootTablesFile = name.replace("_tree", "_leaves");
-			leavesLootTable.put(leafLootTablesFile, builder.toString());
 		});
 
 		return leavesLootTable;
