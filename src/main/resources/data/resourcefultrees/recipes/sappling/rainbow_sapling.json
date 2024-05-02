@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["RGB", "WSW", "RGB"],
+	"key": {
+		"S": {
+			"tag": "minecraft:saplings"
+		},
+		"R": {
+			"item": "minecraft:red_dye"
+		},
+		"G": {
+			"item": "minecraft:green_dye"
+		},
+		"B": {
+			"item": "minecraft:blue_dye"
+		},
+		"W": {
+			"item": "minecraft:white_dye"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:rainbow_sapling",
+		"count": 1
+	}
+}

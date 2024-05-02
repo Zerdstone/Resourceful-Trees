@@ -69,10 +69,10 @@ public class TreeSetup {
 			LOGGER.info("Copying Wither Tree finished");
 		}
 
-		if(Boolean.TRUE.equals(CommonConfig.GENERATE_RGB_TREES.get())) {
-			LOGGER.info("Copying RGB Tree...");
-			FileUtils.copyFile(ModPaths.TREES, Path.of(ModConstants.MOD_ROOT.toString(), "/data/resourcefultrees/default_trees/rgb_tree.json"));
-			LOGGER.info("Copying RGB Tree finished");
+		if(Boolean.TRUE.equals(CommonConfig.GENERATE_RAINBOW_TREES.get())) {
+			LOGGER.info("Copying Rainbow Tree...");
+			FileUtils.copyFile(ModPaths.TREES, Path.of(ModConstants.MOD_ROOT.toString(), "/data/resourcefultrees/default_trees/rainbow_tree.json"));
+			LOGGER.info("Copying Rainbow Tree finished");
 		}
 
 		LOGGER.info("Registering Custom Trees...");

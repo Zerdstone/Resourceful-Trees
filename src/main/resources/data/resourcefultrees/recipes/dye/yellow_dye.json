@@ -1,13 +1,9 @@
 {
 	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		" E ",
-		" E ",
-		" E "
-	],
+	"pattern": [" E ", " E ", " E "],
 	"key": {
 		"E": {
-			"item": "resourcefultrees:rgb_sap"
+			"item": "resourcefultrees:rainbow_sap"
 		}
 	},
 	"result": {

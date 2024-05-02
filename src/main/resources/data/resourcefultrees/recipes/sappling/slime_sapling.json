@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["RBR", "BSB", "RBR"],
+	"key": {
+		"S": {
+			"tag": "minecraft:saplings"
+		},
+		"B": {
+			"item": "minecraft:slime_block"
+		},
+		"R": {
+			"item": "minecraft:slime_ball"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:slime_sapling",
+		"count": 1
+	}
+}

@@ -36,8 +36,8 @@ public class RegistryHandler {
 
 	public static void registerDynamicTrees() {
 		TreeRegistry.getRegistry().getTrees().forEach(RegistryHandler::registerTree);
-		if(Boolean.TRUE.equals(CommonConfig.GENERATE_RGB_TREES.get())) {
-			ModItems.ITEMS.register("rgb_sap", () -> new Item(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB)));
+		if(Boolean.TRUE.equals(CommonConfig.GENERATE_RAINBOW_TREES.get())) {
+			ModItems.ITEMS.register("rainbow_sap", () -> new Item(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB)));
 		}
 	}
 

@@ -1,0 +1,21 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["RBR", 
+				"BSB", 
+				"RBR"],
+	"key": {
+		"S": {
+			"tag": "minecraft:saplings"
+		},
+		"B": {
+			"item": "minecraft:netherite_ingot"
+		},
+		"R": {
+			"item": "minecraft:netherite_scrap"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:ancient_sapling",
+		"count": 1
+	}
+}

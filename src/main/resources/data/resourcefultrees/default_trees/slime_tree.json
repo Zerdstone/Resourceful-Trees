@@ -4,21 +4,21 @@
 		"biomeList": []
 	},
 	"bark": {
-		"displayName": "Slimy",
+		"displayName": "Slime",
 		"resultIngredient": "minecraft:slime_ball"
 	},
 	"log": {
-		"displayName": "Slimy",
+		"displayName": "Slime",
 		"useChiselInWorld": true,
 		"burnTime": 0
 	},
 	"sapling": {
-		"displayName": "Slimy",
+		"displayName": "Slime",
 		"burnTime": 0
 	},
 	"growOn": "minecraft:dirt",
 	"leaves": {
-		"displayName": "Slimy",
+		"displayName": "Slime",
 		"dropSapling": true,
 		"dropBark": true,
 		"dropStick": false

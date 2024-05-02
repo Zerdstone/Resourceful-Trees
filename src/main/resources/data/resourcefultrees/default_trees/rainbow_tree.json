@@ -6,21 +6,21 @@
 		]
 	},
 	"bark": {
-		"displayName": "RGB",
+		"displayName": "Rainbow",
 		"resultIngredient": "minecraft:dirt"
 	},
 	"log": {
-		"displayName": "RGB",
+		"displayName": "Rainbow",
 		"useChiselInWorld": true,
 		"burnTime": 0
 	},
 	"sapling": {
-		"displayName": "RGB",
+		"displayName": "Rainbow",
 		"burnTime": 0
 	},
 	"growOn": "minecraft:dirt",
 	"leaves": {
-		"displayName": "RGB",
+		"displayName": "Rainbow",
 		"dropSapling": true,
 		"dropBark": true,
 		"dropStick": false

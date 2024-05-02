@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["RRR", "RSR", "RRR"],
+	"key": {
+		"S": {
+			"tag": "minecraft:saplings"
+		},
+		"R": {
+			"item": "minecraft:ender_pearl"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:ender_sapling",
+		"count": 1
+	}
+}

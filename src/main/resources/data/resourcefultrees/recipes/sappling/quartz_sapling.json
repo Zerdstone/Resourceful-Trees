@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["RBR", "BSB", "RBR"],
+	"key": {
+		"S": {
+			"tag": "minecraft:saplings"
+		},
+		"B": {
+			"item": "minecraft:quartz_block"
+		},
+		"R": {
+			"item": "minecraft:quartz"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:quartz_sapling",
+		"count": 1
+	}
+}

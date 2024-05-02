@@ -2,9 +2,16 @@ package fr.zerdstone.resourcefultrees.data;
 
 import fr.zerdstone.resourcefultrees.registry.RegistryHandler;
 import fr.zerdstone.resourcefultrees.registry.resourcefulTrees.TreeRegistry;
+import fr.zerdstone.resourcefultrees.utils.ModConstants;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static fr.zerdstone.resourcefultrees.ResourcefulTrees.LOGGER;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class FileGenerator {
 
@@ -26,19 +33,24 @@ public class FileGenerator {
 		builder.append("{");
 		TreeRegistry.getRegistry().getTrees().forEach((name, tree) -> {
 			// logs
-			generateLangEntry(builder, "block.resourcefultrees.", name.replace("_tree", ""), "_log", tree.log.displayName, "Log");
+			generateLangEntry(builder, "block.resourcefultrees.", name.replace("_tree", ""), "_log",
+					tree.log.displayName, "Log");
 
 			// leaves
-			generateLangEntry(builder, "block.resourcefultrees.", name.replace("_tree", ""), "_leaves", tree.leaves.displayName, "Leaves");
+			generateLangEntry(builder, "block.resourcefultrees.", name.replace("_tree", ""), "_leaves",
+					tree.leaves.displayName, "Leaves");
 
 			// saplings
-			generateLangEntry(builder, "block.resourcefultrees.", name.replace("_tree", ""), "_sapling", tree.sapling.displayName, "Sapling");
+			generateLangEntry(builder, "block.resourcefultrees.", name.replace("_tree", ""), "_sapling",
+					tree.sapling.displayName, "Sapling");
 
 			// bark
-			generateLangEntry(builder, "item.resourcefultrees.", name.replace("_tree", ""), "_bark", tree.bark.displayName, "Bark");
+			generateLangEntry(builder, "item.resourcefultrees.", name.replace("_tree", ""), "_bark",
+					tree.bark.displayName, "Bark");
 
-			if(name.contains("rgb")) {
-				generateLangEntry(builder, "item.resourcefultrees.", name.replace("_tree", ""), "_sap", "RGB", "Sap");
+			if (name.contains("rainbow")) {
+				generateLangEntry(builder, "item.resourcefultrees.", name.replace("_tree", ""), "_sap", "Rainbow",
+						"Sap");
 			}
 
 		});
@@ -52,32 +64,32 @@ public class FileGenerator {
 	public static Map<String, String> generateLogBlockModel() {
 		Map<String, String> logsBlockModels = new HashMap<>();
 
+		Path classicLogFilePath = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/classicLogBlock.json");
+
+		Path horizontalLogFilePath = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/horizontalLogBlock.json");
+
 		RegistryHandler.LOGS.forEach((name, log) -> {
 			// Classic
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"parent\": \"minecraft:block/cube_column\",");
-			builder.append("\"textures\": {");
-			builder.append("\"end\": \"minecraft:block/oak_log_top\",");
-			builder.append("\"side\": \"resourcefultrees:block/" + name.replace("_tree", "_log") + "\"");
-			builder.append("}");
-			builder.append("}");
-
-			String logModelFile = name.replace("_tree", "_log");
-			logsBlockModels.put(logModelFile, builder.toString());
+			String logModelFileName = name.replace("_tree", "_log");
+			try {
+				String classicLogBlock = Files.readString(classicLogFilePath);
+				classicLogBlock = classicLogBlock.replace("LOGNAME", name.replace("_tree", "_log"));
+				logsBlockModels.put(logModelFileName, classicLogBlock);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 
 			// Horizontal
-			StringBuilder builderH = new StringBuilder();
-			builderH.append("{");
-			builderH.append("\"parent\": \"minecraft:block/cube_column_horizontal\",");
-			builderH.append("\"textures\": {");
-			builderH.append("\"end\": \"minecraft:block/oak_log_top\",");
-			builderH.append("\"side\": \"resourcefultrees:block/" + name.replace("_tree", "_log") + "\"");
-			builderH.append("}");
-			builderH.append("}");
-
-			String logHModelFile = name.replace("_tree", "_log") + "_horizontal";
-			logsBlockModels.put(logHModelFile, builder.toString());
+			String logHModelFileName = name.replace("_tree", "_log") + "_horizontal";
+			try {
+				String horizontalLogBlock = Files.readString(horizontalLogFilePath);
+				horizontalLogBlock = horizontalLogBlock.replace("LOGNAME", name.replace("_tree", "_log"));
+				logsBlockModels.put(logHModelFileName, horizontalLogBlock);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		return logsBlockModels;
@@ -86,17 +98,17 @@ public class FileGenerator {
 	public static Map<String, String> generateLeavesBlockModel() {
 		Map<String, String> leavesBlockModel = new HashMap<>();
 
-		RegistryHandler.LEAVES.forEach((name, leaf) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"parent\": \"minecraft:block/leaves\",");
-			builder.append("\"textures\": {");
-			builder.append("\"all\": \"resourcefultrees:block/tree_leaves\"");
-			builder.append("}");
-			builder.append("}");
+		Path leafFilePath = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/leafBlock.json");
 
-			String leafModelFile = name.replace("_tree", "_leaves");
-			leavesBlockModel.put(leafModelFile, builder.toString());
+		RegistryHandler.LEAVES.forEach((name, leaf) -> {
+			String leafModelFileName = name.replace("_tree", "_leaves");
+			try {
+				String leafBlock = Files.readString(leafFilePath);
+				leavesBlockModel.put(leafModelFileName, leafBlock);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		return leavesBlockModel;
@@ -105,17 +117,18 @@ public class FileGenerator {
 	public static Map<String, String> generateSaplingBlockModel() {
 		Map<String, String> saplingsBlockModel = new HashMap<>();
 
-		RegistryHandler.SAPLING.forEach((name, sapling) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"parent\": \"minecraft:block/cross\",");
-			builder.append("\"textures\": {");
-			builder.append("\"cross\": \"resourcefultrees:block/" + name.replace("_tree", "_sapling") + "\"");
-			builder.append("}");
-			builder.append("}");
+		Path saplingFilePath = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/saplingBlock.json");
 
-			String saplingModelFile = name.replace("_tree", "_sapling");
-			saplingsBlockModel.put(saplingModelFile, builder.toString());
+		RegistryHandler.SAPLING.forEach((name, sapling) -> {
+			String saplingModelFileName = name.replace("_tree", "_sapling");
+			try {
+				String saplingBlock = Files.readString(saplingFilePath);
+				saplingBlock = saplingBlock.replace("SAPLINGNAME", name.replace("_tree", "_sapling"));
+				saplingsBlockModel.put(saplingModelFileName, saplingBlock);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		return saplingsBlockModel;
@@ -124,24 +137,29 @@ public class FileGenerator {
 	public static Map<String, String> generateBLockItemModel() {
 		Map<String, String> blocksItemModel = new HashMap<>();
 
-		RegistryHandler.LOGS.forEach((name, log) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"parent\": \"resourcefultrees:block/" + name.replace("_tree", "_log") + "\"");
-			builder.append("}");
+		Path blockItemModel = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/blockItem.json");
 
-			String logModelFile = name.replace("_tree", "_log");
-			blocksItemModel.put(logModelFile, builder.toString());
+		RegistryHandler.LOGS.forEach((name, log) -> {
+			String logItemModelFileName = name.replace("_tree", "_log");
+			try {
+				String logItemBlock = Files.readString(blockItemModel);
+				logItemBlock = logItemBlock.replace("BLOCKNAME", name.replace("_tree", "_log"));
+				blocksItemModel.put(logItemModelFileName, logItemBlock);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		RegistryHandler.LEAVES.forEach((name, leaf) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"parent\": \"resourcefultrees:block/" + name.replace("_tree", "_leaves") + "\"");
-			builder.append("}");
-
-			String leafModelFile = name.replace("_tree", "_leaves");
-			blocksItemModel.put(leafModelFile, builder.toString());
+			String leafItemModelFileName = name.replace("_tree", "_leaves");
+			try {
+				String leafItemBlock = Files.readString(blockItemModel);
+				leafItemBlock = leafItemBlock.replace("BLOCKNAME", name.replace("_tree", "_leaves"));
+				blocksItemModel.put(leafItemModelFileName, leafItemBlock);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		return blocksItemModel;
@@ -150,30 +168,29 @@ public class FileGenerator {
 	public static Map<String, String> generateItemModel() {
 		Map<String, String> itemsModel = new HashMap<>();
 
-		RegistryHandler.SAPLING.forEach((name, sapling) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"parent\": \"minecraft:item/generated\",");
-			builder.append("\"textures\": {");
-			builder.append("\"layer0\": \"resourcefultrees:block/" + name.replace("_tree", "_sapling") + "\"");
-			builder.append("}");
-			builder.append("}");
+		Path itemModel = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/item.json");
 
-			String saplingModelFile = name.replace("_tree", "_sapling");
-			itemsModel.put(saplingModelFile, builder.toString());
+		RegistryHandler.SAPLING.forEach((name, sapling) -> {
+			String saplingItemModelFileName = name.replace("_tree", "_sapling");
+			try {
+				String saplingItem = Files.readString(itemModel);
+				saplingItem = saplingItem.replace("item/ITEMNAME", "block/" + name.replace("_tree", "_sapling"));
+				itemsModel.put(saplingItemModelFileName, saplingItem);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		RegistryHandler.BARK.forEach((name, bark) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"parent\": \"minecraft:item/generated\",");
-			builder.append("\"textures\": {");
-			builder.append("\"layer0\": \"resourcefultrees:item/" + name.replace("_tree", "_bark") + "\"");
-			builder.append("}");
-			builder.append("}");
-
-			String barkModelFile = name.replace("_tree", "_bark");
-			itemsModel.put(barkModelFile, builder.toString());
+			String barkItemModelFileName = name.replace("_tree", "_bark");
+			try {
+				String barkItem = Files.readString(itemModel);
+				barkItem = barkItem.replace("ITEMNAME", name.replace("_tree", "_bark"));
+				itemsModel.put(barkItemModelFileName, barkItem);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		return itemsModel;
@@ -182,52 +199,29 @@ public class FileGenerator {
 	public static Map<String, String> generateSimpleBlockLootTable() {
 		Map<String, String> blocksLootTable = new HashMap<>();
 
+		Path SimpleBlcokLootTableModel = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/SimpleBlcokLootTable.json");
+
 		RegistryHandler.LOGS.forEach((name, log) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{\"type\": \"minecraft:block\",\"pools\": [");
-
-			builder.append("{");
-
-			builder.append("\"rolls\": 1.0,");
-			builder.append("\"bonus_rolls\": 0.0,");
-			builder.append("\"entries\": [");
-			builder.append("{");
-			builder.append("\"type\": \"minecraft:item\",");
-			builder.append("\"name\": \"resourcefultrees:" + name.replace("_tree", "_log") + "\"");
-			builder.append("}");
-			builder.append("],");
-			builder.append("\"conditions\": [{\"condition\": \"minecraft:survives_explosion\"}]");
-
-			builder.append("}");
-
-			builder.append("]}");
-
-			String logLootTablesFile = name.replace("_tree", "_log");
-			blocksLootTable.put(logLootTablesFile, builder.toString());
+			String logLootTablesFileName = name.replace("_tree", "_log");
+			try {
+				String logLootTable = Files.readString(SimpleBlcokLootTableModel);
+				logLootTable = logLootTable.replace("ITEMNAME", name.replace("_tree", "_log"));
+				blocksLootTable.put(logLootTablesFileName, logLootTable);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		RegistryHandler.SAPLING.forEach((name, sapling) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{\"type\": \"minecraft:block\",\"pools\": [");
-
-			builder.append("{");
-
-			builder.append("\"rolls\": 1.0,");
-			builder.append("\"bonus_rolls\": 0.0,");
-			builder.append("\"entries\": [");
-			builder.append("{");
-			builder.append("\"type\": \"minecraft:item\",");
-			builder.append("\"name\": \"resourcefultrees:" + name.replace("_tree", "_sapling") + "\"");
-			builder.append("}");
-			builder.append("],");
-			builder.append("\"conditions\": [{\"condition\": \"minecraft:survives_explosion\"}]");
-
-			builder.append("}");
-
-			builder.append("]}");
-
-			String saplingLootTablesFile = name.replace("_tree", "_sapling");
-			blocksLootTable.put(saplingLootTablesFile, builder.toString());
+			String saplingLootTablesFileName = name.replace("_tree", "_sapling");
+			try {
+				String saplingLootTable = Files.readString(SimpleBlcokLootTableModel);
+				saplingLootTable = saplingLootTable.replace("ITEMNAME", name.replace("_tree", "_sapling"));
+				blocksLootTable.put(saplingLootTablesFileName, saplingLootTable);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		return blocksLootTable;
@@ -240,33 +234,36 @@ public class FileGenerator {
 			StringBuilder builder = new StringBuilder();
 			builder.append("{\"type\": \"minecraft:block\",\"pools\": [");
 
-			builder.append("{\"rolls\": 1,\"bonus_rolls\": 0,\"entries\": [{\"type\": \"minecraft:alternatives\",\"children\": [");
+			builder.append(
+					"{\"rolls\": 1,\"bonus_rolls\": 0,\"entries\": [{\"type\": \"minecraft:alternatives\",\"children\": [");
 			// Leaves
 			builder.append("{\"type\": \"minecraft:item\",\"name\": \"resourcefultrees:" +
-								   name.replace("_tree", "_leaves") +
-								   "\",\"conditions\": [{\"condition\": \"minecraft:alternative\",\"terms\": [{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"items\": [\"minecraft:shears\"]}},{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"enchantments\": [{\"enchantment\": \"minecraft:silk_touch\",\"levels\": {\"min\": 1}}]}}]}]}");
+					name.replace("_tree", "_leaves") +
+					"\",\"conditions\": [{\"condition\": \"minecraft:alternative\",\"terms\": [{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"items\": [\"minecraft:shears\"]}},{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"enchantments\": [{\"enchantment\": \"minecraft:silk_touch\",\"levels\": {\"min\": 1}}]}}]}]}");
 
 			TreeData treeData = TreeRegistry.getRegistry().getTrees().get(name);
 
-			if(treeData.leaves.dropSapling) {
+			if (treeData.leaves.dropSapling) {
 				// Sapling
 				builder.append(",{\"type\": \"minecraft:item\",\"name\": \"resourcefultrees:" +
-									   name.replace("_tree", "_sapling") +
-									   "\",\"conditions\": [{\"condition\": \"minecraft:survives_explosion\"},{\"condition\": \"minecraft:table_bonus\",\"enchantment\": \"minecraft:fortune\",\"chances\": [0.05,0.0625,0.083333336,0.1]}]}");
+						name.replace("_tree", "_sapling") +
+						"\",\"conditions\": [{\"condition\": \"minecraft:survives_explosion\"},{\"condition\": \"minecraft:table_bonus\",\"enchantment\": \"minecraft:fortune\",\"chances\": [0.05,0.0625,0.083333336,0.1]}]}");
 			}
 			builder.append("]}]}");
 
-			if(treeData.leaves.dropStick) {
+			if (treeData.leaves.dropStick) {
 				// Stick
 				builder.append(
 						",{\"rolls\": 1,\"bonus_rolls\": 0,\"entries\": [{\"type\": \"minecraft:item\",\"name\": \"minecraft:stick\",\"functions\": [{\"function\": \"minecraft:set_count\",\"count\": {\"type\": \"minecraft:uniform\",\"min\": 1,\"max\": 2},\"add\": false},{\"function\": \"minecraft:explosion_decay\"}],\"conditions\": [{\"condition\": \"minecraft:table_bonus\",\"enchantment\": \"minecraft:fortune\",\"chances\": [0.02,0.022222223,0.025,0.033333335,0.1]}]}],\"conditions\": [{\"condition\": \"minecraft:inverted\",\"term\": {\"condition\": \"minecraft:alternative\",\"terms\": [{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"items\": [\"minecraft:shears\"]}},{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"enchantments\": [{\"enchantment\": \"minecraft:silk_touch\",\"levels\": {\"min\": 1}}]}}]}}]}");
 			}
 
-			if(treeData.leaves.dropBark) {
+			if (treeData.leaves.dropBark) {
 				// Bark
-				builder.append(",{\"rolls\": 1,\"bonus_rolls\": 0,\"entries\": [{\"type\": \"minecraft:item\",\"name\": \"resourcefultrees:" +
-									   name.replace("_tree", "_bark") +
-									   "\",\"functions\": [{\"function\": \"minecraft:set_count\",\"count\": {\"type\": \"minecraft:uniform\",\"min\": 1,\"max\": 2},\"add\": false},{\"function\": \"minecraft:explosion_decay\"}],\"conditions\": [{\"condition\": \"minecraft:table_bonus\",\"enchantment\": \"minecraft:fortune\",\"chances\": [0.02,0.022222223,0.025,0.033333335,0.1]}]}],\"conditions\": [{\"condition\": \"minecraft:inverted\",\"term\": {\"condition\": \"minecraft:alternative\",\"terms\": [{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"items\": [\"minecraft:shears\"]}},{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"enchantments\": [{\"enchantment\": \"minecraft:silk_touch\",\"levels\": {\"min\": 1}}]}}]}}]}");
+				builder.append(
+						",{\"rolls\": 1,\"bonus_rolls\": 0,\"entries\": [{\"type\": \"minecraft:item\",\"name\": \"resourcefultrees:"
+								+
+								name.replace("_tree", "_bark") +
+								"\",\"functions\": [{\"function\": \"minecraft:set_count\",\"count\": {\"type\": \"minecraft:uniform\",\"min\": 1,\"max\": 2},\"add\": false},{\"function\": \"minecraft:explosion_decay\"}],\"conditions\": [{\"condition\": \"minecraft:table_bonus\",\"enchantment\": \"minecraft:fortune\",\"chances\": [0.02,0.022222223,0.025,0.033333335,0.1]}]}],\"conditions\": [{\"condition\": \"minecraft:inverted\",\"term\": {\"condition\": \"minecraft:alternative\",\"terms\": [{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"items\": [\"minecraft:shears\"]}},{\"condition\": \"minecraft:match_tool\",\"predicate\": {\"enchantments\": [{\"enchantment\": \"minecraft:silk_touch\",\"levels\": {\"min\": 1}}]}}]}}]}");
 			}
 
 			builder.append("]}");
@@ -281,32 +278,31 @@ public class FileGenerator {
 	public static Map<String, String> generateSimpleBlockStates() {
 		Map<String, String> simpleBlocksState = new HashMap<>();
 
-		RegistryHandler.SAPLING.forEach((name, sapling) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"variants\": {");
-			builder.append("\"\": {");
-			builder.append("\"model\": \"resourcefultrees:block/" + name.replace("_tree", "_sapling") + "\"");
-			builder.append("}");
-			builder.append("}");
-			builder.append("}");
+		Path SimpleBlcokLootTableModel = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/simpleBlockState.json");
 
-			String saplingBlockStateFile = name.replace("_tree", "_sapling");
-			simpleBlocksState.put(saplingBlockStateFile, builder.toString());
+		RegistryHandler.SAPLING.forEach((name, sapling) -> {
+			String saplingBlockStateFileName = name.replace("_tree", "_sapling");
+
+			try {
+				String saplingBlockStates = Files.readString(SimpleBlcokLootTableModel);
+				saplingBlockStates = saplingBlockStates.replace("BLOCKNAME", name.replace("_tree", "_sapling"));
+				simpleBlocksState.put(saplingBlockStateFileName, saplingBlockStates);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		RegistryHandler.LEAVES.forEach((name, leaf) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"variants\": {");
-			builder.append("\"\": {");
-			builder.append("\"model\": \"resourcefultrees:block/" + name.replace("_tree", "_leaves") + "\"");
-			builder.append("}");
-			builder.append("}");
-			builder.append("}");
+			String leafBlockStateFileName = name.replace("_tree", "_leaves");
 
-			String leafBlockStateFile = name.replace("_tree", "_leaves");
-			simpleBlocksState.put(leafBlockStateFile, builder.toString());
+			try {
+				String leafBlockStates = Files.readString(SimpleBlcokLootTableModel);
+				leafBlockStates = leafBlockStates.replace("BLOCKNAME", name.replace("_tree", "_leaves"));
+				simpleBlocksState.put(leafBlockStateFileName, leafBlockStates);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		return simpleBlocksState;
@@ -315,33 +311,25 @@ public class FileGenerator {
 	public static Map<String, String> generateLogBlockStates() {
 		Map<String, String> logsBlockStates = new HashMap<>();
 
-		RegistryHandler.LOGS.forEach((name, log) -> {
-			StringBuilder builder = new StringBuilder();
-			builder.append("{");
-			builder.append("\"variants\": {");
-			builder.append("\"axis=x\": {");
-			builder.append("\"model\": \"resourcefultrees:block/" + name.replace("_tree", "_log") + "_horizontal\",");
-			builder.append("\"x\": 90,");
-			builder.append("\"y\": 90");
-			builder.append("},");
-			builder.append("\"axis=y\": {");
-			builder.append("\"model\": \"resourcefultrees:block/" + name.replace("_tree", "_log") + "\"");
-			builder.append("},");
-			builder.append("\"axis=z\": {");
-			builder.append("\"model\": \"resourcefultrees:block/" + name.replace("_tree", "_log") + "_horizontal\",");
-			builder.append("\"x\": 90");
-			builder.append("}");
-			builder.append("}");
-			builder.append("}");
+		Path logBlcokLootTableModel = Path.of(ModConstants.MOD_ROOT.toString(),
+				"/data/resourcefultrees/fileModels/logBlockState.json");
 
-			String logBlockStateFile = name.replace("_tree", "_log");
-			logsBlockStates.put(logBlockStateFile, builder.toString());
+		RegistryHandler.LOGS.forEach((name, log) -> {
+			String logBlockStateFileName = name.replace("_tree", "_log");
+			try {
+				String logBlockStates = Files.readString(logBlcokLootTableModel);
+				logBlockStates = logBlockStates.replace("LOGNAME", name.replace("_tree", "_log"));
+				logsBlockStates.put(logBlockStateFileName, logBlockStates);
+			} catch (IOException e) {
+				LOGGER.error(e);
+			}
 		});
 
 		return logsBlockStates;
 	}
 
-	private static void generateLangEntry(StringBuilder builder, String prefix, String name, String suffix, String displayName, String displaySuffix) {
+	private static void generateLangEntry(StringBuilder builder, String prefix, String name, String suffix,
+			String displayName, String displaySuffix) {
 		builder.append("\"");
 		builder.append(prefix);
 		builder.append(name);

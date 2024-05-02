@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["RBR", "BSB", "RBR"],
+	"key": {
+		"S": {
+			"tag": "minecraft:saplings"
+		},
+		"B": {
+			"item": "minecraft:wither_skeleton_skull"
+		},
+		"R": {
+			"item": "minecraft:nether_star"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:wither_sapling",
+		"count": 1
+	}
+}

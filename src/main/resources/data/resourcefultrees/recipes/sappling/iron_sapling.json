@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["RBR", "BSB", "RBR"],
+	"key": {
+		"S": {
+			"tag": "minecraft:saplings"
+		},
+		"B": {
+			"item": "minecraft:iron_block"
+		},
+		"R": {
+			"item": "minecraft:iron_ingot"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:iron_sapling",
+		"count": 1
+	}
+}

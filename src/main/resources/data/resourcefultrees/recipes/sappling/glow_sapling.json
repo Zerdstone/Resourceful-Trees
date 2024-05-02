@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["RBR", "BSB", "RBR"],
+	"key": {
+		"S": {
+			"tag": "minecraft:saplings"
+		},
+		"B": {
+			"item": "minecraft:glowstone"
+		},
+		"R": {
+			"item": "minecraft:glowstone_dust"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:glow_sapling",
+		"count": 1
+	}
+}

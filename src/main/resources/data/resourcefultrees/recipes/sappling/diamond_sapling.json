@@ -1,0 +1,19 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["RBR", "BSB", "RBR"],
+	"key": {
+		"S": {
+			"tag": "minecraft:saplings"
+		},
+		"B": {
+			"item": "minecraft:diamond_block"
+		},
+		"R": {
+			"item": "minecraft:diamond"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:diamond_sapling",
+		"count": 1
+	}
+}

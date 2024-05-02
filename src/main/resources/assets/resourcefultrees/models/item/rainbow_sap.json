@@ -1,6 +1,6 @@
 {
 	"parent": "minecraft:item/generated",
 	"textures": {
-		"layer0": "resourcefultrees:item/rgb_sap"
+		"layer0": "resourcefultrees:item/rainbow_sap"
 	}
 }
