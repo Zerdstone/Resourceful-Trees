@@ -1,6 +1,7 @@
 package fr.zerdstone.resourcefultrees.registry;
 
 import fr.zerdstone.resourcefultrees.config.CommonConfig;
+import fr.zerdstone.resourcefultrees.custom.items.fuelItem;
 import fr.zerdstone.resourcefultrees.data.TreeData;
 import fr.zerdstone.resourcefultrees.gui.CreativeTab;
 import fr.zerdstone.resourcefultrees.registry.minecraft.ModBlocks;
@@ -32,12 +33,30 @@ public class RegistryHandler {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModItems.initializeRegistries(bus);
 		ModBlocks.initializeRegistries(bus);
+
+		ModItems.ITEMS.register("tiny_charcoal",
+				() -> new fuelItem(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB), 400));
+		if (CommonConfig.GENERATE_ORE_TREES.get()) {
+			ModItems.ITEMS.register("tiny_diamond",
+					() -> new Item(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB)));
+			ModItems.ITEMS.register("half_emerald",
+					() -> new Item(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB)));
+
+		}
 	}
 
 	public static void registerDynamicTrees() {
 		TreeRegistry.getRegistry().getTrees().forEach(RegistryHandler::registerTree);
-		if (Boolean.TRUE.equals(CommonConfig.GENERATE_RAINBOW_TREES.get())) {
+		if (CommonConfig.GENERATE_RAINBOW_TREES.get()) {
 			ModItems.ITEMS.register("rainbow_sap",
+					() -> new Item(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB)));
+		}
+		if (CommonConfig.GENERATE_ENDER_TREES.get()) {
+			ModItems.ITEMS.register("ender_pearl_part",
+					() -> new Item(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB)));
+		}
+		if (CommonConfig.GENERATE_WITHER_TREES.get()) {
+			ModItems.ITEMS.register("nether_star_part",
 					() -> new Item(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB)));
 		}
 	}

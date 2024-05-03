@@ -69,6 +69,12 @@ public class TreeSetup {
 			LOGGER.info("Copying Wither Tree finished");
 		}
 
+		if(Boolean.TRUE.equals(CommonConfig.GENERATE_BLAZE_TREES.get())) {
+			LOGGER.info("Copying Blaze Tree...");
+			FileUtils.copyFile(ModPaths.TREES, Path.of(ModConstants.MOD_ROOT.toString(), "/data/resourcefultrees/default_trees/blaze_tree.json"));
+			LOGGER.info("Copying Blaze Tree finished");
+		}
+
 		if(Boolean.TRUE.equals(CommonConfig.GENERATE_RAINBOW_TREES.get())) {
 			LOGGER.info("Copying Rainbow Tree...");
 			FileUtils.copyFile(ModPaths.TREES, Path.of(ModConstants.MOD_ROOT.toString(), "/data/resourcefultrees/default_trees/rainbow_tree.json"));

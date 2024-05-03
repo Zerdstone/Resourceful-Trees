@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["II ", "II ", "   "],
+	"key": {
+		"I": {
+			"item": "resourcefultrees:ender_pearl_part"
+		}
+	},
+	"result": {
+		"item": "minecraft:ender_pearl",
+		"count": 1
+	}
+}

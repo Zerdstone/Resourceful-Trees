@@ -1,5 +1,5 @@
 {
-	"displayName": "Coal",
+	"displayName": "Blaze",
 	"useChiselOnLog": true,
 	"logBurnTime": 0,
 	"saplingBurnTime": 0,
@@ -11,7 +11,7 @@
 	},
 	"results": {
 		"T0": {
-			"item": "minecraft:coal",
+			"item": "minecraft:blaze_powder",
 			"number": 1
 		},
 		"T1": {},

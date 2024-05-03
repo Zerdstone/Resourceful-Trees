@@ -1,0 +1,21 @@
+{
+	"displayName": "Amethyst",
+	"useChiselOnLog": true,
+	"logBurnTime": 0,
+	"saplingBurnTime": 0,
+	"leavesDropBark": true,
+	"growOn": "minecraft:dirt",
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"results": {
+		"T0": {
+			"item": "minecraft:amethyst_shard",
+			"number": 1
+		},
+		"T1": {},
+		"T2": {},
+		"T3": {}
+	}
+}

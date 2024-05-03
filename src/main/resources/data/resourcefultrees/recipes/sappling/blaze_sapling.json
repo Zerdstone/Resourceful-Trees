@@ -6,14 +6,14 @@
 			"tag": "minecraft:saplings"
 		},
 		"B": {
-			"item": "minecraft:coal_block"
+			"item": "minecraft:blaze_rod"
 		},
 		"R": {
-			"item": "minecraft:coal"
+			"item": "minecraft:blaze_powder"
 		}
 	},
 	"result": {
-		"item": "resourcefultrees:coal_sapling",
+		"item": "resourcefultrees:blaze_sapling",
 		"count": 1
 	}
 }

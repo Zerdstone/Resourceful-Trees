@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["III", "III", "III"],
+	"key": {
+		"I": {
+			"item": "resourcefultrees:tiny_diamond"
+		}
+	},
+	"result": {
+		"item": "minecraft:diamond",
+		"count": 1
+	}
+}

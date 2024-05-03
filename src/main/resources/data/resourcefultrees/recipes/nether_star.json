@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [" I ", "III", " I "],
+	"key": {
+		"I": {
+			"item": "resourcefultrees:nether_star_part"
+		}
+	},
+	"result": {
+		"item": "minecraft:nether_star",
+		"count": 1
+	}
+}

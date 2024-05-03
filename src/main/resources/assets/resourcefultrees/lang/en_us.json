@@ -1,4 +1,9 @@
 {
 	"item.resourcefultrees.wood_chisel": "Wood Chisel",
+	"item.resourcefultrees.tiny_charcoal": "Tiny Charcoal",
+	"item.resourcefultrees.ender_pearl_part": "Ender Pearl Part",
+	"item.resourcefultrees.nether_star_part": "Nether Star Part",
+	"item.resourcefultrees.tiny_diamond": "Tiny Diamond",
+	"item.resourcefultrees.half_emerald": "Half Emerald",
 	"itemGroup.resourcefultreestab": "Resouceful Trees"
 }

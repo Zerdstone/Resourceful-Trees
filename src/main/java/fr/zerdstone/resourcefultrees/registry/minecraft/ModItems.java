@@ -2,7 +2,7 @@ package fr.zerdstone.resourcefultrees.registry.minecraft;
 
 import fr.zerdstone.resourcefultrees.ResourcefulTrees;
 import fr.zerdstone.resourcefultrees.custom.items.WoodChiselItem;
-import fr.zerdstone.resourcefultrees.custom.items.fuelItem;
+import fr.zerdstone.resourcefultrees.custom.items.fuelBlockItem;
 import fr.zerdstone.resourcefultrees.gui.CreativeTab;
 import fr.zerdstone.resourcefultrees.utils.ModConstants;
 import net.minecraft.world.item.BlockItem;
@@ -47,10 +47,10 @@ public class ModItems {
 	}
 
 	public static void addLogItem(String name, RegistryObject<Block> log, int burnTime) {
-		if(burnTime == 0) {
+		if (burnTime == 0) {
 			LOG_BLOCK_ITEMS.register(name, () -> new BlockItem(log.get(), getItemProperties()));
 		} else {
-			LOG_BLOCK_ITEMS.register(name, () -> new fuelItem(log.get(), getItemProperties(), burnTime));
+			LOG_BLOCK_ITEMS.register(name, () -> new fuelBlockItem(log.get(), getItemProperties(), burnTime));
 		}
 	}
 
@@ -59,12 +59,13 @@ public class ModItems {
 	}
 
 	public static void addSaplingItem(String name, RegistryObject<Block> sapling, int burnTime) {
-		if(burnTime == 0) {
+		if (burnTime == 0) {
 			SAPLING_BLOCK_ITEMS.register(name, () -> new BlockItem(sapling.get(), getItemProperties()));
 		} else {
-			SAPLING_BLOCK_ITEMS.register(name, () -> new fuelItem(sapling.get(), getItemProperties(), burnTime));
+			SAPLING_BLOCK_ITEMS.register(name, () -> new fuelBlockItem(sapling.get(), getItemProperties(), burnTime));
 		}
 	}
 
-	public static final RegistryObject<Item> WOOD_CHISEL = WOOD_CHISEL_ITEMS.register("wood_chisel", () -> new WoodChiselItem(getItemProperties().durability(32)));
+	public static final RegistryObject<Item> WOOD_CHISEL = WOOD_CHISEL_ITEMS.register("wood_chisel",
+			() -> new WoodChiselItem(getItemProperties().durability(32)));
 }
