@@ -1,26 +1,21 @@
 {
+	"displayName": "Gold",
+	"useChiselOnLog": true,
+	"logBurnTime": 0,
+	"saplingBurnTime": 0,
+	"leavesDropBark": true,
+	"growOn": "minecraft:dirt",
 	"worldGeneration": {
 		"generateInWorld": false,
 		"biomeList": []
 	},
-	"bark": {
-		"displayName": "Gold",
-		"resultIngredient": "minecraft:gold_ingot"
-	},
-	"log": {
-		"displayName": "Gold",
-		"useChiselInWorld": true,
-		"burnTime": 0
-	},
-	"sapling": {
-		"displayName": "Gold",
-		"burnTime": 0
-	},
-	"growOn": "minecraft:dirt",
-	"leaves": {
-		"displayName": "Gold",
-		"dropSapling": true,
-		"dropBark": true,
-		"dropStick": false
+	"results": {
+		"T0": {
+			"item": "minecraft:gold_nugget",
+			"number": 1
+		},
+		"T1": {},
+		"T2": {},
+		"T3": {}
 	}
 }

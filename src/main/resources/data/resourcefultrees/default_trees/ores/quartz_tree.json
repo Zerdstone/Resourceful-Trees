@@ -1,26 +1,21 @@
 {
+	"displayName": "Quartz",
+	"useChiselOnLog": true,
+	"logBurnTime": 0,
+	"saplingBurnTime": 0,
+	"leavesDropBark": true,
+	"growOn": "minecraft:dirt",
 	"worldGeneration": {
 		"generateInWorld": false,
 		"biomeList": []
 	},
-	"bark": {
-		"displayName": "Quartz",
-		"resultIngredient": "minecraft:quartz"
-	},
-	"log": {
-		"displayName": "Quartz",
-		"useChiselInWorld": true,
-		"burnTime": 0
-	},
-	"sapling": {
-		"displayName": "Quartz",
-		"burnTime": 0
-	},
-	"growOn": "minecraft:dirt",
-	"leaves": {
-		"displayName": "Quartz",
-		"dropSapling": true,
-		"dropBark": true,
-		"dropStick": false
+	"results": {
+		"T0": {
+			"item": "minecraft:quartz",
+			"number": 1
+		},
+		"T1": {},
+		"T2": {},
+		"T3": {}
 	}
 }

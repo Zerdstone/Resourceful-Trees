@@ -1,28 +1,21 @@
 {
-	"worldGeneration": {
-		"generateInWorld": true,
-		"biomeList": [
-			"minecraft:plains"
-		]
-	},
-	"bark": {
-		"displayName": "Rainbow",
-		"resultIngredient": "minecraft:dirt"
-	},
-	"log": {
-		"displayName": "Rainbow",
-		"useChiselInWorld": true,
-		"burnTime": 0
-	},
-	"sapling": {
-		"displayName": "Rainbow",
-		"burnTime": 0
-	},
+	"displayName": "Rainbow",
+	"useChiselOnLog": true,
+	"logBurnTime": 0,
+	"saplingBurnTime": 0,
+	"leavesDropBark": true,
 	"growOn": "minecraft:dirt",
-	"leaves": {
-		"displayName": "Rainbow",
-		"dropSapling": true,
-		"dropBark": true,
-		"dropStick": false
+	"worldGeneration": {
+		"generateInWorld": false,
+		"biomeList": []
+	},
+	"results": {
+		"T0": {
+			"item": "resourcefultrees:rainbow_sap",
+			"number": 1
+		},
+		"T1": {},
+		"T2": {},
+		"T3": {}
 	}
 }

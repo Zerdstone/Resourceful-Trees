@@ -1,26 +1,21 @@
 {
+	"displayName": "Diamond",
+	"useChiselOnLog": true,
+	"logBurnTime": 0,
+	"saplingBurnTime": 0,
+	"leavesDropBark": true,
+	"growOn": "minecraft:dirt",
 	"worldGeneration": {
 		"generateInWorld": false,
 		"biomeList": []
 	},
-	"bark": {
-		"displayName": "Diamond",
-		"resultIngredient": "minecraft:diamond"
-	},
-	"log": {
-		"displayName": "Diamond",
-		"useChiselInWorld": true,
-		"burnTime": 0
-	},
-	"sapling": {
-		"displayName": "Diamond",
-		"burnTime": 0
-	},
-	"growOn": "minecraft:dirt",
-	"leaves": {
-		"displayName": "Diamond",
-		"dropSapling": true,
-		"dropBark": true,
-		"dropStick": false
+	"results": {
+		"T0": {
+			"item": "minecraft:diamond",
+			"number": 1
+		},
+		"T1": {},
+		"T2": {},
+		"T3": {}
 	}
 }

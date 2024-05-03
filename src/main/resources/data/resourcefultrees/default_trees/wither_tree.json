@@ -1,26 +1,21 @@
 {
+	"displayName": "Wither",
+	"useChiselOnLog": true,
+	"logBurnTime": 0,
+	"saplingBurnTime": 0,
+	"leavesDropBark": true,
+	"growOn": "minecraft:dirt",
 	"worldGeneration": {
 		"generateInWorld": false,
 		"biomeList": []
 	},
-	"bark": {
-		"displayName": "Wither",
-		"resultIngredient": "minecraft:nether_star"
-	},
-	"log": {
-		"displayName": "Wither",
-		"useChiselInWorld": true,
-		"burnTime": 0
-	},
-	"sapling": {
-		"displayName": "Wither",
-		"burnTime": 0
-	},
-	"growOn": "minecraft:dirt",
-	"leaves": {
-		"displayName": "Wither",
-		"dropSapling": true,
-		"dropBark": true,
-		"dropStick": false
+	"results": {
+		"T0": {
+			"item": "minecraft:nether_star",
+			"number": 1
+		},
+		"T1": {},
+		"T2": {},
+		"T3": {}
 	}
 }

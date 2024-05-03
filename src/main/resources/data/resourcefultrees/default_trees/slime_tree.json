@@ -1,26 +1,21 @@
 {
+	"displayName": "Slime",
+	"useChiselOnLog": true,
+	"logBurnTime": 0,
+	"saplingBurnTime": 0,
+	"leavesDropBark": true,
+	"growOn": "minecraft:dirt",
 	"worldGeneration": {
 		"generateInWorld": false,
 		"biomeList": []
 	},
-	"bark": {
-		"displayName": "Slime",
-		"resultIngredient": "minecraft:slime_ball"
-	},
-	"log": {
-		"displayName": "Slime",
-		"useChiselInWorld": true,
-		"burnTime": 0
-	},
-	"sapling": {
-		"displayName": "Slime",
-		"burnTime": 0
-	},
-	"growOn": "minecraft:dirt",
-	"leaves": {
-		"displayName": "Slime",
-		"dropSapling": true,
-		"dropBark": true,
-		"dropStick": false
+	"results": {
+		"T0": {
+			"item": "minecraft:slime_ball",
+			"number": 1
+		},
+		"T1": {},
+		"T2": {},
+		"T3": {}
 	}
 }

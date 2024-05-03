@@ -34,19 +34,19 @@ public class FileGenerator {
 		TreeRegistry.getRegistry().getTrees().forEach((name, tree) -> {
 			// logs
 			generateLangEntry(builder, "block.resourcefultrees.", name.replace("_tree", ""), "_log",
-					tree.log.displayName, "Log");
+					tree.displayName, "Log");
 
 			// leaves
 			generateLangEntry(builder, "block.resourcefultrees.", name.replace("_tree", ""), "_leaves",
-					tree.leaves.displayName, "Leaves");
+					tree.displayName, "Leaves");
 
 			// saplings
 			generateLangEntry(builder, "block.resourcefultrees.", name.replace("_tree", ""), "_sapling",
-					tree.sapling.displayName, "Sapling");
+					tree.displayName, "Sapling");
 
 			// bark
 			generateLangEntry(builder, "item.resourcefultrees.", name.replace("_tree", ""), "_bark",
-					tree.bark.displayName, "Bark");
+					tree.displayName, "Bark");
 
 			if (name.contains("rainbow")) {
 				generateLangEntry(builder, "item.resourcefultrees.", name.replace("_tree", ""), "_sap", "Rainbow",
@@ -245,7 +245,7 @@ public class FileGenerator {
 				leafLootTable = leafLootTable.replace("SAPLINGNAME", name.replace("_tree", "_sapling"));
 				leafLootTable = leafLootTable.replace("LEAFNAME", name.replace("_tree", "_leaves"));
 
-				if (treeData.leaves.dropBark) {
+				if (treeData.leavesDropBark) {
 					String barkData = Files.readString(leafBarkData);
 					barkData = barkData.replace("BARKNAME", name.replace("_tree", "_bark"));
 					leafLootTable = leafLootTable.replace("BARKDATA", "," + barkData);

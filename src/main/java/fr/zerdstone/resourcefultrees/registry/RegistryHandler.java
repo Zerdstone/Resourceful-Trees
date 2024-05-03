@@ -36,8 +36,9 @@ public class RegistryHandler {
 
 	public static void registerDynamicTrees() {
 		TreeRegistry.getRegistry().getTrees().forEach(RegistryHandler::registerTree);
-		if(Boolean.TRUE.equals(CommonConfig.GENERATE_RAINBOW_TREES.get())) {
-			ModItems.ITEMS.register("rainbow_sap", () -> new Item(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB)));
+		if (Boolean.TRUE.equals(CommonConfig.GENERATE_RAINBOW_TREES.get())) {
+			ModItems.ITEMS.register("rainbow_sap",
+					() -> new Item(new Item.Properties().tab(CreativeTab.RESOURCEFULTREES_TAB)));
 		}
 	}
 
@@ -55,7 +56,7 @@ public class RegistryHandler {
 
 	private static void registerLog(String name, TreeData treeData) {
 		String logName = name.replace("_tree", "_log");
-		LOGS.put(name, ModBlocks.addLog(logName, treeData.log.useChiselInWorld, treeData.log.burnTime));
+		LOGS.put(name, ModBlocks.addLog(logName, treeData.useChiselOnLog, treeData.logBurnTime));
 	}
 
 	private static void registerLeaf(String name) {
@@ -65,6 +66,6 @@ public class RegistryHandler {
 
 	private static void registerSapling(String name, TreeData treeData) {
 		String saplingName = name.replace("_tree", "_sapling");
-		SAPLING.put(name, ModBlocks.addSapling(saplingName, treeData.sapling.burnTime, treeData.growOn));
+		SAPLING.put(name, ModBlocks.addSapling(saplingName, treeData.saplingBurnTime, treeData.growOn));
 	}
 }
