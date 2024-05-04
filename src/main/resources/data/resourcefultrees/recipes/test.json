@@ -1,0 +1,12 @@
+{
+	"type": "resourcefultrees:simple_bark_refinery",
+	"ingredients": [
+		{
+			"item": "resourcefultrees:iron_bark"
+		}
+	],
+	"output": {
+		"item": "minecraft:iron_nugget",
+		"count": 2
+	}
+}

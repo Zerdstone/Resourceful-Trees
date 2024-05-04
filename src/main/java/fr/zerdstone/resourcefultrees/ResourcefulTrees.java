@@ -8,10 +8,14 @@ import fr.zerdstone.resourcefultrees.data.dataPack.DataPackLoader;
 import fr.zerdstone.resourcefultrees.init.ModSetup;
 import fr.zerdstone.resourcefultrees.init.TreeSetup;
 import fr.zerdstone.resourcefultrees.registry.RegistryHandler;
+import fr.zerdstone.resourcefultrees.screen.ModMenuTypes;
+import fr.zerdstone.resourcefultrees.screen.SimpleBarkRefineryScreen;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AddPackFindersEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -27,18 +31,21 @@ public class ResourcefulTrees {
 	public static final Logger LOGGER = LogManager.getLogger();
 
 	public ResourcefulTrees() {
+		IEventBus eventbus = FMLJavaModLoadingContext.get().getModEventBus();
+
 		ModSetup.initialize();
 		RegistryHandler.init();
 
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.COMMON_CONFIG, "resourcefulTrees/common.toml");
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.COMMON_CONFIG,
+				"resourcefulTrees/common.toml");
 		ConfigLoader.load(CommonConfig.COMMON_CONFIG, "resourcefulTrees/common.toml");
 
 		TreeSetup.setupTrees();
 		RegistryHandler.registerDynamicTrees();
 		DataGen.generateCommonData();
 
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onPackFinders);
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+		eventbus.addListener(this::onPackFinders);
+		eventbus.addListener(this::clientSetup);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}
@@ -51,11 +58,13 @@ public class ResourcefulTrees {
 		RegistryHandler.LEAVES.forEach((name, leaf) -> {
 			ItemBlockRenderTypes.setRenderLayer(leaf.get(), RenderType.cutout());
 		});
+
+		MenuScreens.register(ModMenuTypes.SIMPLE_BARK_REFINERY_MENU.get(), SimpleBarkRefineryScreen::new);
 	}
 
 	@SubscribeEvent
 	public void onPackFinders(AddPackFindersEvent event) {
-		switch(event.getPackType()) {
+		switch (event.getPackType()) {
 			case SERVER_DATA -> event.addRepositorySource(DataPackLoader.INSTANCE);
 			case CLIENT_RESOURCES -> event.addRepositorySource(AssetsPackLoader.INSTANCE);
 		}

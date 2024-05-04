@@ -3,6 +3,7 @@ package fr.zerdstone.resourcefultrees.registry.minecraft;
 import fr.zerdstone.resourcefultrees.ResourcefulTrees;
 import fr.zerdstone.resourcefultrees.custom.blocks.ModLog;
 import fr.zerdstone.resourcefultrees.custom.blocks.ModSapling;
+import fr.zerdstone.resourcefultrees.custom.blocks.SimpleBarkRefineryBlock;
 import fr.zerdstone.resourcefultrees.registry.RegistryHandler;
 import fr.zerdstone.resourcefultrees.utils.ModConstants;
 import fr.zerdstone.resourcefultrees.world.TreeGrower;
@@ -27,6 +28,9 @@ public class ModBlocks {
 	public static final DeferredRegister<Block> LOGS = createBlockRegistry();
 	public static final DeferredRegister<Block> LEAVES = createBlockRegistry();
 	public static final DeferredRegister<Block> SAPLING = createBlockRegistry();
+
+	public static final RegistryObject<Block> SIMPLE_BARK_REFINERY = BLOCKS.register("simple_bark_refinery",
+			() -> new SimpleBarkRefineryBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
 	private static DeferredRegister<Block> createBlockRegistry() {
 		return DeferredRegister.create(ForgeRegistries.BLOCKS, ResourcefulTrees.MOD_ID);

@@ -4,6 +4,8 @@
 
 ### Multi blocks :
 
+Rafinerie d'écorce
+
 -   Forestry :
 
     -   Grow trees and crops (garden cloche style)
