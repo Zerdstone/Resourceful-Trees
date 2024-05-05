@@ -8,6 +8,7 @@ import fr.zerdstone.resourcefultrees.data.dataPack.DataPackLoader;
 import fr.zerdstone.resourcefultrees.init.ModSetup;
 import fr.zerdstone.resourcefultrees.init.TreeSetup;
 import fr.zerdstone.resourcefultrees.registry.RegistryHandler;
+import fr.zerdstone.resourcefultrees.registry.minecraft.ModBlocks;
 import fr.zerdstone.resourcefultrees.screen.ModMenuTypes;
 import fr.zerdstone.resourcefultrees.screen.SimpleBarkRefineryScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -36,8 +37,7 @@ public class ResourcefulTrees {
 		ModSetup.initialize();
 		RegistryHandler.init();
 
-		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.COMMON_CONFIG,
-				"resourcefulTrees/common.toml");
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.COMMON_CONFIG, "resourcefulTrees/common.toml");
 		ConfigLoader.load(CommonConfig.COMMON_CONFIG, "resourcefulTrees/common.toml");
 
 		TreeSetup.setupTrees();
@@ -59,14 +59,16 @@ public class ResourcefulTrees {
 			ItemBlockRenderTypes.setRenderLayer(leaf.get(), RenderType.cutout());
 		});
 
+		ItemBlockRenderTypes.setRenderLayer(ModBlocks.SIMPLE_BARK_REFINERY.get(), RenderType.cutout());
+
 		MenuScreens.register(ModMenuTypes.SIMPLE_BARK_REFINERY_MENU.get(), SimpleBarkRefineryScreen::new);
 	}
 
 	@SubscribeEvent
 	public void onPackFinders(AddPackFindersEvent event) {
 		switch (event.getPackType()) {
-			case SERVER_DATA -> event.addRepositorySource(DataPackLoader.INSTANCE);
-			case CLIENT_RESOURCES -> event.addRepositorySource(AssetsPackLoader.INSTANCE);
+		case SERVER_DATA -> event.addRepositorySource(DataPackLoader.INSTANCE);
+		case CLIENT_RESOURCES -> event.addRepositorySource(AssetsPackLoader.INSTANCE);
 		}
 	}
 }

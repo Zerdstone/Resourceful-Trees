@@ -12,8 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class SimpleBarkRefineryScreen extends AbstractContainerScreen<SimpleBarkRefineryMenu> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(ResourcefulTrees.MOD_ID,
-			"textures/gui/simple_bark_refinery_gui.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(ResourcefulTrees.MOD_ID, "textures/gui/simple_bark_refinery_gui.png");
 
 	public SimpleBarkRefineryScreen(SimpleBarkRefineryMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
 		super(pMenu, pPlayerInventory, pTitle);
@@ -30,7 +29,11 @@ public class SimpleBarkRefineryScreen extends AbstractContainerScreen<SimpleBark
 		this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
 		if (menu.isCrafting()) {
-			this.blit(pPoseStack, x + 102, y + 41, 176, 0, 8, menu.getScaledProgress());
+			this.blit(pPoseStack, x + 82, y + 20, 176, 0, menu.getScaledProgress(), 46);
+		}
+
+		if (menu.isBurning()) {
+			this.blit(pPoseStack, x + 27, y + 25, 176, 46, 14, menu.getScaledBurn());
 		}
 	}
 

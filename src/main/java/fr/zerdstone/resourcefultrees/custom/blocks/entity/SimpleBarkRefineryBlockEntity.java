@@ -1,6 +1,5 @@
 package fr.zerdstone.resourcefultrees.custom.blocks.entity;
 
-import fr.zerdstone.resourcefultrees.ResourcefulTrees;
 import fr.zerdstone.resourcefultrees.recipe.SimpleBarkRefineryRecipe;
 import fr.zerdstone.resourcefultrees.registry.minecraft.ModBlockEntities;
 import fr.zerdstone.resourcefultrees.registry.minecraft.ModItems;
@@ -19,7 +18,6 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AbstractFurnaceBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.ForgeHooks;
@@ -33,7 +31,7 @@ import java.util.Optional;
 
 public class SimpleBarkRefineryBlockEntity extends BlockEntity implements MenuProvider {
 
-	private final ItemStackHandler itemHandler = new ItemStackHandler(4) { // SLOT_NUMBER
+	private final ItemStackHandler itemHandler = new ItemStackHandler(4) { // NUMBER OF SLOT
 		protected void onContentsChanged(int slot) {
 			setChanged();
 		};

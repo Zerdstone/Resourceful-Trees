@@ -31,8 +31,7 @@ public class SimpleBarkRefineryMenu extends AbstractContainerMenu {
 	private final ContainerData data;
 
 	public SimpleBarkRefineryMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-		this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()),
-				new SimpleContainerData(4));
+		this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(4)); // Simple Container = NUMBER OF SLOT
 	}
 
 	public SimpleBarkRefineryMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
@@ -47,10 +46,10 @@ public class SimpleBarkRefineryMenu extends AbstractContainerMenu {
 		addPlayerHotbar(inv);
 
 		this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-			this.addSlot(new ModFuelSlot(handler, FUEL_SLOT, 34, 40));
-			this.addSlot(new SlotItemHandler(handler, INPUT_SLOT, 57, 18));
-			this.addSlot(new ModResultSlot(handler, RESULT_SLOT, 103, 18));
-			this.addSlot(new ModResultSlot(handler, TINY_CHARCOAL_OUTPUT_SLOT, 80, 60));
+			this.addSlot(new ModFuelSlot(handler, FUEL_SLOT, 26, 48));
+			this.addSlot(new SlotItemHandler(handler, INPUT_SLOT, 62, 35));
+			this.addSlot(new ModResultSlot(handler, RESULT_SLOT, 134, 19));
+			this.addSlot(new ModResultSlot(handler, TINY_CHARCOAL_OUTPUT_SLOT, 134, 49));
 		});
 
 		addDataSlots(data);
@@ -63,28 +62,39 @@ public class SimpleBarkRefineryMenu extends AbstractContainerMenu {
 	public int getScaledProgress() {
 		int progress = this.data.get(0);
 		int maxProgress = this.data.get(1);
-		int progressArrowSize = 26;
+		int progressArrowSize = 44;
+
+		return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+	}
+
+	public boolean isBurning() {
+		return data.get(2) > 0;
+	}
+
+	public int getScaledBurn() {
+		int progress = this.data.get(2);
+		int maxProgress = this.data.get(3);
+		int progressArrowSize = 14;
 
 		return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
 	}
 
 	@Override
 	public boolean stillValid(Player pPlayer) {
-		return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer,
-				ModBlocks.SIMPLE_BARK_REFINERY.get());
+		return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), pPlayer, ModBlocks.SIMPLE_BARK_REFINERY.get());
 	}
 
 	private void addPlayerInventory(Inventory playerInventory) {
 		for (int i = 0; i < 3; ++i) {
 			for (int l = 0; l < 9; ++l) {
-				this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
+				this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
 			}
 		}
 	}
 
 	private void addPlayerHotbar(Inventory playerInventory) {
 		for (int i = 0; i < 9; ++i) {
-			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+			this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
 		}
 	}
 
@@ -122,14 +132,12 @@ public class SimpleBarkRefineryMenu extends AbstractContainerMenu {
 		// Check if the slot clicked is one of the vanilla container slots
 		if (index < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
 			// This is a vanilla container slot so merge the stack into the tile inventory
-			if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
-					+ TE_INVENTORY_SLOT_COUNT, false)) {
+			if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) {
 				return ItemStack.EMPTY; // EMPTY_ITEM
 			}
 		} else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
 			// This is a TE slot so merge the stack into the players inventory
-			if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT,
-					false)) {
+			if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
 				return ItemStack.EMPTY;
 			}
 		} else {

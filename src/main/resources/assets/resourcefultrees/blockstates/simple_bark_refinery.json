@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"facing=north": {
+			"model": "resourcefultrees:block/simple_bark_refinery"
+		},
+		"facing=east": {
+			"model": "resourcefultrees:block/simple_bark_refinery",
+			"y": 90
+		},
+		"facing=south": {
+			"model": "resourcefultrees:block/simple_bark_refinery",
+			"y": 180
+		},
+		"facing=west": {
+			"model": "resourcefultrees:block/simple_bark_refinery",
+			"y": 270
+		}
+	}
+}

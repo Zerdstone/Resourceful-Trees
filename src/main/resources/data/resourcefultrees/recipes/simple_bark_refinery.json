@@ -1,0 +1,22 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": ["CBC", "CPC", "CFC"],
+	"key": {
+		"C": {
+			"item": "minecraft:cobblestone"
+		},
+		"B": {
+			"item": "minecraft:iron_bars"
+		},
+		"P": {
+			"item": "minecraft:flower_pot"
+		},
+		"F": {
+			"item": "minecraft:soul_campfire"
+		}
+	},
+	"result": {
+		"item": "resourcefultrees:simple_bark_refinery",
+		"count": 1
+	}
+}

@@ -30,7 +30,7 @@ public class ModBlocks {
 	public static final DeferredRegister<Block> SAPLING = createBlockRegistry();
 
 	public static final RegistryObject<Block> SIMPLE_BARK_REFINERY = BLOCKS.register("simple_bark_refinery",
-			() -> new SimpleBarkRefineryBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+			() -> new SimpleBarkRefineryBlock(BlockBehaviour.Properties.copy(Blocks.COBBLESTONE).noOcclusion())); // FOR BLOCKS.FURNACE, must implement lit
 
 	private static DeferredRegister<Block> createBlockRegistry() {
 		return DeferredRegister.create(ForgeRegistries.BLOCKS, ResourcefulTrees.MOD_ID);
@@ -43,19 +43,12 @@ public class ModBlocks {
 		SAPLING.register(bus);
 	}
 
-	private static final BlockBehaviour.Properties LOG_PROPERTIES = BlockBehaviour.Properties.of(Material.WOOD)
-			.strength(2.0F).sound(SoundType.WOOD);
-	private static final BlockBehaviour.Properties LEAVES_PROPERTIES = BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)
-			.sound(SoundType.AZALEA_LEAVES);
-	private static final BlockBehaviour.Properties SAPLING_PROPERTIES = BlockBehaviour.Properties.of(Material.PLANT)
-			.noCollission()
-			.randomTicks()
-			.instabreak()
-			.sound(SoundType.GRASS);
+	private static final BlockBehaviour.Properties LOG_PROPERTIES = BlockBehaviour.Properties.of(Material.WOOD).strength(2.0F).sound(SoundType.WOOD);
+	private static final BlockBehaviour.Properties LEAVES_PROPERTIES = BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES).sound(SoundType.AZALEA_LEAVES);
+	private static final BlockBehaviour.Properties SAPLING_PROPERTIES = BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS);
 
 	public static RegistryObject<Block> addLog(String name, boolean useChiselInWold, int burnTime) {
-		RegistryObject<Block> log = LOGS.register(name, () -> new ModLog(LOG_PROPERTIES,
-				RegistryHandler.BARK.get(name.replace("_log", "_tree")), useChiselInWold));
+		RegistryObject<Block> log = LOGS.register(name, () -> new ModLog(LOG_PROPERTIES, RegistryHandler.BARK.get(name.replace("_log", "_tree")), useChiselInWold));
 		ModItems.addLogItem(name, log, burnTime);
 		return log;
 	}
@@ -68,10 +61,7 @@ public class ModBlocks {
 
 	public static RegistryObject<Block> addSapling(String name, int burnTime, String dirt) {
 		Block otherDirt = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(dirt));
-		RegistryObject<Block> sapling = SAPLING.register(name,
-				() -> new ModSapling(new TreeGrower(name.replace("_sapling", "_tree"), () -> otherDirt),
-						SAPLING_PROPERTIES,
-						() -> otherDirt));
+		RegistryObject<Block> sapling = SAPLING.register(name, () -> new ModSapling(new TreeGrower(name.replace("_sapling", "_tree"), () -> otherDirt), SAPLING_PROPERTIES, () -> otherDirt));
 		ModItems.addSaplingItem(name, sapling, burnTime);
 		return sapling;
 	}
