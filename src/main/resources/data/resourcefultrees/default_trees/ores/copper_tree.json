@@ -11,11 +11,11 @@
 	},
 	"results": {
 		"T0": {
-			"item": "minecraft:copper_nugget",
+			"item": "resourcefultrees:copper_nugget",
 			"number": 1
 		},
-		"T1": {},
-		"T2": {},
-		"T3": {}
+		"T1": { },
+		"T2": { },
+		"T3": { }
 	}
 }

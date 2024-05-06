@@ -11,11 +11,11 @@
 	},
 	"results": {
 		"T0": {
-			"item": "minecraft:ender_pearl",
+			"item": "resourcefultrees:ender_pearl_part",
 			"number": 1
 		},
-		"T1": {},
-		"T2": {},
-		"T3": {}
+		"T1": { },
+		"T2": { },
+		"T3": { }
 	}
 }

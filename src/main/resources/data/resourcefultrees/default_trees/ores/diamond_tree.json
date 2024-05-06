@@ -11,11 +11,11 @@
 	},
 	"results": {
 		"T0": {
-			"item": "minecraft:diamond",
+			"item": "resourcefultrees:tiny_diamond",
 			"number": 1
 		},
-		"T1": {},
-		"T2": {},
-		"T3": {}
+		"T1": { },
+		"T2": { },
+		"T3": { }
 	}
 }

@@ -2,7 +2,6 @@ package fr.zerdstone.resourcefultrees.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-
 import fr.zerdstone.resourcefultrees.ResourcefulTrees;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
@@ -33,7 +32,7 @@ public class SimpleBarkRefineryScreen extends AbstractContainerScreen<SimpleBark
 		}
 
 		if (menu.isBurning()) {
-			this.blit(pPoseStack, x + 27, y + 25, 176, 46, 14, menu.getScaledBurn());
+			this.blit(pPoseStack, x + 27, y + 25 + menu.getScaledBurn(), 176, 46 + menu.getScaledBurn() - 1, 14, 14 - menu.getScaledBurn());
 		}
 	}
 

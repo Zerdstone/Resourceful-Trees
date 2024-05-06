@@ -1,10 +1,7 @@
 package fr.zerdstone.resourcefultrees.recipe;
 
-import javax.annotation.Nullable;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-
 import fr.zerdstone.resourcefultrees.ResourcefulTrees;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
@@ -12,18 +9,16 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.ShapedRecipe;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+
+import javax.annotation.Nullable;
 
 public class SimpleBarkRefineryRecipe implements Recipe<SimpleContainer> {
 
 	private final ResourceLocation id;
 	private final ItemStack output;
-	private NonNullList<Ingredient> recipeItems;
+	private final NonNullList<Ingredient> recipeItems;
 
 	public SimpleBarkRefineryRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> recipeItems) {
 		this.id = id;
@@ -67,22 +62,27 @@ public class SimpleBarkRefineryRecipe implements Recipe<SimpleContainer> {
 	}
 
 	public static class Type implements RecipeType<SimpleBarkRefineryRecipe> {
-		private Type() {
-		}
-
 		public static final Type INSTANCE = new Type();
 		public static final String ID = "simple_bark_refinery";
+
+		private Type() {
+		}
 	}
 
 	public static class Serializer implements RecipeSerializer<SimpleBarkRefineryRecipe> {
 		public static final Serializer INSTANCE = new Serializer();
 		public static final ResourceLocation ID = new ResourceLocation(ResourcefulTrees.MOD_ID, "simple_bark_refinery");
 
+		@SuppressWarnings("unchecked") // Need this wrapper, because generics
+		private static <G> Class<G> castClass(Class<?> cls) {
+			return (Class<G>) cls;
+		}
+
 		@Override
 		public SimpleBarkRefineryRecipe fromJson(ResourceLocation id, JsonObject json) {
 			ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
 
-			JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
+			JsonArray ingredients = GsonHelper.getAsJsonArray(json, "input");
 			NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
 
 			for (int i = 0; i < inputs.size(); i++) {
@@ -107,7 +107,7 @@ public class SimpleBarkRefineryRecipe implements Recipe<SimpleContainer> {
 		@Override
 		public void toNetwork(FriendlyByteBuf buf, SimpleBarkRefineryRecipe recipe) {
 			buf.writeInt(recipe.getIngredients().size());
-			for (Ingredient ing : recipe.getIngredients()) {
+			for (Ingredient ing: recipe.getIngredients()) {
 				ing.toNetwork(buf);
 			}
 			buf.writeItemStack(recipe.getResultItem(), false);
@@ -127,11 +127,6 @@ public class SimpleBarkRefineryRecipe implements Recipe<SimpleContainer> {
 		@Override
 		public Class<RecipeSerializer<?>> getRegistryType() {
 			return Serializer.castClass(RecipeSerializer.class);
-		}
-
-		@SuppressWarnings("unchecked") // Need this wrapper, because generics
-		private static <G> Class<G> castClass(Class<?> cls) {
-			return (Class<G>) cls;
 		}
 	}
 

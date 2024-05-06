@@ -11,11 +11,11 @@
 	},
 	"results": {
 		"T0": {
-			"item": "minecraft:nether_star",
+			"item": "resourcefultrees:nether_star_part",
 			"number": 1
 		},
-		"T1": {},
-		"T2": {},
-		"T3": {}
+		"T1": { },
+		"T2": { },
+		"T3": { }
 	}
 }

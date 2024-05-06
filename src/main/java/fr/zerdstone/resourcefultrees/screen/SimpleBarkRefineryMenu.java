@@ -7,11 +7,7 @@ import fr.zerdstone.resourcefultrees.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.SimpleContainerData;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -20,11 +16,11 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class SimpleBarkRefineryMenu extends AbstractContainerMenu {
 
-	private static int NUMBER_OF_SLOT = 4;
-	private static int FUEL_SLOT = 0;
-	private static int INPUT_SLOT = 1;
-	private static int RESULT_SLOT = 2;
-	private static int TINY_CHARCOAL_OUTPUT_SLOT = 3;
+	private static final int NUMBER_OF_SLOT = 4;
+	private static final int FUEL_SLOT = 0;
+	private static final int INPUT_SLOT = 1;
+	private static final int RESULT_SLOT = 2;
+	private static final int TINY_CHARCOAL_OUTPUT_SLOT = 3;
 
 	private final SimpleBarkRefineryBlockEntity blockEntity;
 	private final Level level;
@@ -74,9 +70,9 @@ public class SimpleBarkRefineryMenu extends AbstractContainerMenu {
 	public int getScaledBurn() {
 		int progress = this.data.get(2);
 		int maxProgress = this.data.get(3);
-		int progressArrowSize = 14;
+		int progressArrowSize = 13;
 
-		return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+		return maxProgress != 0 && progress != 0 ? progressArrowSize - (progress * progressArrowSize / maxProgress) : 0;
 	}
 
 	@Override
@@ -124,8 +120,9 @@ public class SimpleBarkRefineryMenu extends AbstractContainerMenu {
 	@Override
 	public ItemStack quickMoveStack(Player playerIn, int index) {
 		Slot sourceSlot = slots.get(index);
-		if (sourceSlot == null || !sourceSlot.hasItem())
+		if (sourceSlot == null || !sourceSlot.hasItem()) {
 			return ItemStack.EMPTY; // EMPTY_ITEM
+		}
 		ItemStack sourceStack = sourceSlot.getItem();
 		ItemStack copyOfSourceStack = sourceStack.copy();
 
@@ -135,19 +132,22 @@ public class SimpleBarkRefineryMenu extends AbstractContainerMenu {
 			if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT, false)) {
 				return ItemStack.EMPTY; // EMPTY_ITEM
 			}
-		} else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+		}
+		else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
 			// This is a TE slot so merge the stack into the players inventory
 			if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
 				return ItemStack.EMPTY;
 			}
-		} else {
+		}
+		else {
 			System.out.println("Invalid slotIndex:" + index);
 			return ItemStack.EMPTY;
 		}
 		// If stack size == 0 (the entire stack was moved) set slot contents to null
 		if (sourceStack.getCount() == 0) {
 			sourceSlot.set(ItemStack.EMPTY);
-		} else {
+		}
+		else {
 			sourceSlot.setChanged();
 		}
 		sourceSlot.onTake(playerIn, sourceStack);

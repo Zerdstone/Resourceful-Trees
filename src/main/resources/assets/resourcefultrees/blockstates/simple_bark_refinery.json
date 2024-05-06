@@ -1,18 +1,33 @@
 {
 	"variants": {
-		"facing=north": {
-			"model": "resourcefultrees:block/simple_bark_refinery"
+		"facing=north,lit=false": {
+			"model": "resourcefultrees:block/simple_bark_refinery_off"
 		},
-		"facing=east": {
-			"model": "resourcefultrees:block/simple_bark_refinery",
+		"facing=east,lit=false": {
+			"model": "resourcefultrees:block/simple_bark_refinery_off",
 			"y": 90
 		},
-		"facing=south": {
-			"model": "resourcefultrees:block/simple_bark_refinery",
+		"facing=south,lit=false": {
+			"model": "resourcefultrees:block/simple_bark_refinery_off",
 			"y": 180
 		},
-		"facing=west": {
-			"model": "resourcefultrees:block/simple_bark_refinery",
+		"facing=west,lit=false": {
+			"model": "resourcefultrees:block/simple_bark_refinery_off",
+			"y": 270
+		},
+		"facing=north,lit=true": {
+			"model": "resourcefultrees:block/simple_bark_refinery_on"
+		},
+		"facing=east,lit=true": {
+			"model": "resourcefultrees:block/simple_bark_refinery_on",
+			"y": 90
+		},
+		"facing=south,lit=true": {
+			"model": "resourcefultrees:block/simple_bark_refinery_on",
+			"y": 180
+		},
+		"facing=west,lit=true": {
+			"model": "resourcefultrees:block/simple_bark_refinery_on",
 			"y": 270
 		}
 	}

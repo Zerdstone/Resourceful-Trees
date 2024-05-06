@@ -11,11 +11,11 @@
 	},
 	"results": {
 		"T0": {
-			"item": "minecraft:emerald",
+			"item": "resourcefultrees:half_emerald",
 			"number": 1
 		},
-		"T1": {},
-		"T2": {},
-		"T3": {}
+		"T1": { },
+		"T2": { },
+		"T3": { }
 	}
 }

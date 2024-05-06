@@ -1,0 +1,12 @@
+{
+	"type": "resourcefultrees:simple_bark_refinery",
+	"input": [
+		{
+			"item": "resourcefultrees:BARKINPUT"
+		}
+	],
+	"output": {
+		"item": "ITEMOUTPUT",
+		"count": ITEMCOUNT
+	}
+}

@@ -17,9 +17,13 @@ public final class DataGen {
 		throw new IllegalStateException(ModConstants.UTILITY_CLASS);
 	}
 
-	public static Map<ResourceLocation, String> getClientResources() {return Collections.unmodifiableMap(CLIENT_RESOURCES);}
+	public static Map<ResourceLocation, String> getClientResources() {
+		return Collections.unmodifiableMap(CLIENT_RESOURCES);
+	}
 
-	public static Map<ResourceLocation, String> getServerResources() {return Collections.unmodifiableMap(SERVER_RESOURCES);}
+	public static Map<ResourceLocation, String> getServerResources() {
+		return Collections.unmodifiableMap(SERVER_RESOURCES);
+	}
 
 
 	public static void generateCommonData() {
@@ -61,6 +65,10 @@ public final class DataGen {
 
 		FileGenerator.generateLogBlockStates().forEach((fileName, fileContent) -> {
 			CLIENT_RESOURCES.put(new ResourceLocation(ResourcefulTrees.MOD_ID, "blockstates/" + fileName + ".json"), fileContent);
+		});
+
+		FileGenerator.generateRecipe().forEach((fileName, fileContent) -> {
+			SERVER_RESOURCES.put(new ResourceLocation(ResourcefulTrees.MOD_ID, "recipes/" + fileName + ".json"), fileContent);
 		});
 	}
 }
