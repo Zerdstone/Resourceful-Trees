@@ -8,6 +8,7 @@
 	"item.resourcefultrees.copper_nugget": "Copper Nugget",
 
 	"block.resourcefultrees.simple_bark_refinery": "Simple Bark Refinery",
+	"gui.resourcefultrees.simple_bark_refinery": "Simple Bark Refinery",
 
 	"itemGroup.resourcefultreestab": "Resouceful Trees"
 }

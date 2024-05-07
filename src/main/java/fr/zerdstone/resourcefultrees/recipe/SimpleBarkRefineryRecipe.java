@@ -25,6 +25,11 @@ public class SimpleBarkRefineryRecipe implements Recipe<SimpleContainer> {
 		this.output = output;
 		this.recipeItems = recipeItems;
 	}
+	
+	@Override
+	public NonNullList<Ingredient> getIngredients() {
+		return recipeItems;
+	}
 
 	@Override
 	public boolean matches(SimpleContainer pContainer, Level pLevel) {
