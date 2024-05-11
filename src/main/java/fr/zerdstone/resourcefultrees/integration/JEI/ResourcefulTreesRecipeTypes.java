@@ -1,7 +1,7 @@
 package fr.zerdstone.resourcefultrees.integration.JEI;
 
 import fr.zerdstone.resourcefultrees.ResourcefulTrees;
-import fr.zerdstone.resourcefultrees.recipe.SimpleBarkRefineryRecipe;
+import fr.zerdstone.resourcefultrees.common.recipe.SimpleBarkRefineryRecipe;
 import mezz.jei.api.recipe.RecipeType;
 
 public class ResourcefulTreesRecipeTypes {

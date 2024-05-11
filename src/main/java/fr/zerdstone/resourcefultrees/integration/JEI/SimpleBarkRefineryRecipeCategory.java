@@ -5,9 +5,9 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.mojang.blaze3d.vertex.PoseStack;
 import fr.zerdstone.resourcefultrees.ResourcefulTrees;
-import fr.zerdstone.resourcefultrees.recipe.SimpleBarkRefineryRecipe;
-import fr.zerdstone.resourcefultrees.registry.minecraft.ModBlocks;
-import fr.zerdstone.resourcefultrees.registry.minecraft.ModItems;
+import fr.zerdstone.resourcefultrees.common.recipe.SimpleBarkRefineryRecipe;
+import fr.zerdstone.resourcefultrees.common.register.ModBlocks;
+import fr.zerdstone.resourcefultrees.common.register.ModItems;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -38,18 +38,21 @@ public class SimpleBarkRefineryRecipeCategory implements IRecipeCategory<SimpleB
 	protected final IDrawableAnimated animatedFlame;
 	private final LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 
+	public static final int xGuiOffset = 23;
+	public static final int yGuiOffset = 12;
+
 	public SimpleBarkRefineryRecipeCategory(IGuiHelper helper) {
-		background = helper.createDrawable(TEXTURE, 23, 12, 157 - 23, 68 - 12);
+		background = helper.createDrawable(TEXTURE, xGuiOffset, yGuiOffset, 157 - xGuiOffset, 68 - yGuiOffset);
 		icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.SIMPLE_BARK_REFINERY.get()));
-		this.cachedArrows = CacheBuilder.newBuilder()
-										.maximumSize(25)
-										.build(new CacheLoader<>() {
-											@Override
-											public @NotNull IDrawableAnimated load(Integer cookTime) {
-												return helper.drawableBuilder(TEXTURE, 176, 0, 44, 46)
-															 .buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
-											}
-										});
+		cachedArrows = CacheBuilder.newBuilder()
+								   .maximumSize(25)
+								   .build(new CacheLoader<>() {
+									   @Override
+									   public @NotNull IDrawableAnimated load(@NotNull Integer cookTime) {
+										   return helper.drawableBuilder(TEXTURE, 176, 0, 44, 46)
+														.buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
+									   }
+								   });
 		staticFlame = helper.createDrawable(TEXTURE, 176, 46, 14, 14);
 		animatedFlame = helper.createAnimatedDrawable(staticFlame, 300, IDrawableAnimated.StartDirection.TOP, true);
 	}
@@ -71,10 +74,10 @@ public class SimpleBarkRefineryRecipeCategory implements IRecipeCategory<SimpleB
 
 	@Override
 	public void setRecipe(IRecipeLayoutBuilder builder, SimpleBarkRefineryRecipe recipe, @NotNull IFocusGroup focuses) {
-		builder.addSlot(RecipeIngredientRole.INPUT, 63 - 23, 35 - 12).addIngredients(recipe.getIngredients().get(0));
+		builder.addSlot(RecipeIngredientRole.INPUT, 63 - xGuiOffset, 35 - yGuiOffset).addIngredients(recipe.getIngredients().get(0));
 
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 134 - 23, 19 - 12).addItemStack(recipe.getResultItem());
-		builder.addSlot(RecipeIngredientRole.OUTPUT, 134 - 23, 49 - 12).addItemStack(new ItemStack(ModItems.TINY_CHARCOAL.get(), 1));
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 134 - xGuiOffset, 19 - yGuiOffset).addItemStack(recipe.getResultItem());
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 134 - xGuiOffset, 49 - yGuiOffset).addItemStack(new ItemStack(ModItems.TINY_CHARCOAL.get(), 1));
 	}
 
 	@Override
@@ -88,11 +91,11 @@ public class SimpleBarkRefineryRecipeCategory implements IRecipeCategory<SimpleB
 	}
 
 	@Override
-	public void draw(SimpleBarkRefineryRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
-		animatedFlame.draw(poseStack, 27 - 23, 25 - 12);
+	public void draw(@NotNull SimpleBarkRefineryRecipe recipe, @NotNull IRecipeSlotsView recipeSlotsView, @NotNull PoseStack poseStack, double mouseX, double mouseY) {
+		animatedFlame.draw(poseStack, 27 - xGuiOffset, 25 - yGuiOffset);
 
 		IDrawableAnimated arrow = getArrow();
-		arrow.draw(poseStack, 82 - 23, 20 - 12);
+		arrow.draw(poseStack, 82 - xGuiOffset, 20 - yGuiOffset);
 
 		drawCookTime(poseStack);
 	}
