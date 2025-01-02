@@ -22,10 +22,6 @@ public class TreeSetup {
 	private static Path treePath;
 	private static Path resourcePath;
 
-	private TreeSetup() {
-		throw new IllegalStateException(ModConstants.UTILITY_CLASS);
-	}
-
 	public static void setTreePath(Path path) {
 		treePath = path;
 	}

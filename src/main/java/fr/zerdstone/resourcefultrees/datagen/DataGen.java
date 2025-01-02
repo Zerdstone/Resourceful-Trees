@@ -1,7 +1,6 @@
 package fr.zerdstone.resourcefultrees.datagen;
 
 import fr.zerdstone.resourcefultrees.ResourcefulTrees;
-import fr.zerdstone.resourcefultrees.utils.ModConstants;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.Collections;
@@ -13,10 +12,6 @@ public final class DataGen {
 	private static final Map<ResourceLocation, String> CLIENT_RESOURCES = new HashMap<>();
 	private static final Map<ResourceLocation, String> SERVER_RESOURCES = new HashMap<>();
 
-	private DataGen() {
-		throw new IllegalStateException(ModConstants.UTILITY_CLASS);
-	}
-
 	public static Map<ResourceLocation, String> getClientResources() {
 		return Collections.unmodifiableMap(CLIENT_RESOURCES);
 	}
@@ -26,6 +21,9 @@ public final class DataGen {
 	}
 
 
+	/**
+	 * Generate the common data of the trees such as lang entry, block model, loot table...
+	 */
 	public static void generateCommonData() {
 		SERVER_RESOURCES.put(new ResourceLocation(ResourcefulTrees.MOD_ID, "tags/blocks/resourcefultrees_logs.json"), FileGenerator.generateLogTag());
 

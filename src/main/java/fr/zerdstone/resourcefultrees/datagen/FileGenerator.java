@@ -14,6 +14,11 @@ import static fr.zerdstone.resourcefultrees.ResourcefulTrees.LOGGER;
 
 public class FileGenerator {
 
+	/**
+	 * Create file content for log tag file
+	 *
+	 * @return file content
+	 */
 	public static String generateLogTag() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("{\"replace\": false,\"values\": [");
@@ -27,6 +32,11 @@ public class FileGenerator {
 		return builder.toString();
 	}
 
+	/**
+	 * Create file content for english lang file
+	 *
+	 * @return file content
+	 */
 	public static String generateEnglishLang() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("{");
@@ -60,6 +70,34 @@ public class FileGenerator {
 		return builder.toString();
 	}
 
+	/**
+	 * Generate a line for lang file
+	 *
+	 * @param builder       stringBuilder
+	 * @param prefix        prefix
+	 * @param name          name
+	 * @param suffix        suffix
+	 * @param displayName   name
+	 * @param displaySuffix name suffix
+	 */
+	private static void generateLangEntry(StringBuilder builder, String prefix, String name, String suffix,
+										  String displayName, String displaySuffix) {
+		builder.append("\"");
+		builder.append(prefix);
+		builder.append(name);
+		builder.append(suffix);
+		builder.append("\": \"");
+		builder.append(displayName);
+		builder.append(" ");
+		builder.append(displaySuffix);
+		builder.append("\",");
+	}
+
+	/**
+	 * Create files content of logs block Model
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateLogBlockModel() {
 		Map<String, String> logsBlockModels = new HashMap<>();
 
@@ -96,6 +134,12 @@ public class FileGenerator {
 		return logsBlockModels;
 	}
 
+
+	/**
+	 * Create files content of leaves block Model
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateLeavesBlockModel() {
 		Map<String, String> leavesBlockModel = new HashMap<>();
 
@@ -116,6 +160,12 @@ public class FileGenerator {
 		return leavesBlockModel;
 	}
 
+
+	/**
+	 * Create files content of saplings block Model
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateSaplingBlockModel() {
 		Map<String, String> saplingsBlockModel = new HashMap<>();
 
@@ -137,6 +187,11 @@ public class FileGenerator {
 		return saplingsBlockModel;
 	}
 
+	/**
+	 * Create files content of block item Model
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateBLockItemModel() {
 		Map<String, String> blocksItemModel = new HashMap<>();
 
@@ -170,6 +225,12 @@ public class FileGenerator {
 		return blocksItemModel;
 	}
 
+
+	/**
+	 * Create files content of item Model
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateItemModel() {
 		Map<String, String> itemsModel = new HashMap<>();
 
@@ -203,6 +264,12 @@ public class FileGenerator {
 		return itemsModel;
 	}
 
+
+	/**
+	 * Create files content of a simple block loot table
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateSimpleBlockLootTable() {
 		Map<String, String> blocksLootTable = new HashMap<>();
 
@@ -236,6 +303,11 @@ public class FileGenerator {
 		return blocksLootTable;
 	}
 
+	/**
+	 * Create files content of leaves loot table
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateLeavesLootTable() {
 		Map<String, String> leavesLootTable = new HashMap<>();
 
@@ -273,6 +345,11 @@ public class FileGenerator {
 		return leavesLootTable;
 	}
 
+	/**
+	 * Create files content of a simple block states
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateSimpleBlockStates() {
 		Map<String, String> simpleBlocksState = new HashMap<>();
 
@@ -308,6 +385,11 @@ public class FileGenerator {
 		return simpleBlocksState;
 	}
 
+	/**
+	 * Create files content of log block states
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateLogBlockStates() {
 		Map<String, String> logsBlockStates = new HashMap<>();
 
@@ -329,6 +411,11 @@ public class FileGenerator {
 		return logsBlockStates;
 	}
 
+	/**
+	 * Create files content of all recipes
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateRecipe() {
 		Map<String, String> recipes = new HashMap<>();
 
@@ -339,6 +426,11 @@ public class FileGenerator {
 
 	}
 
+	/**
+	 * Create files content of simple bark refinery recipe
+	 *
+	 * @return File Name and FIle content
+	 */
 	public static Map<String, String> generateSimpleBarkRefineryRecipe() {
 		Map<String, String> recipes = new HashMap<>();
 
@@ -365,16 +457,4 @@ public class FileGenerator {
 		return recipes;
 	}
 
-	private static void generateLangEntry(StringBuilder builder, String prefix, String name, String suffix,
-										  String displayName, String displaySuffix) {
-		builder.append("\"");
-		builder.append(prefix);
-		builder.append(name);
-		builder.append(suffix);
-		builder.append("\": \"");
-		builder.append(displayName);
-		builder.append(" ");
-		builder.append(displaySuffix);
-		builder.append("\",");
-	}
 }

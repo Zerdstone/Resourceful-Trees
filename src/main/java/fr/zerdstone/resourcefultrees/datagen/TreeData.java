@@ -1,5 +1,8 @@
 package fr.zerdstone.resourcefultrees.datagen;
 
+/**
+ * Tree data structure of json file
+ */
 public class TreeData {
 
 	public String displayName;
